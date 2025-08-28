@@ -598,4 +598,68 @@
             </table>
 
             <div class="list-container">
-                <h3 class="list-title
+                <h3 class="list-title">
+                    <i class="fas fa-suitcase"></i>
+                    LIST BARANG WAJIB DIBAWA
+                </h3>
+                <ul class="list">
+                    <li class="list-item">
+                        <i class="fas fa-tshirt"></i>
+                        <div class="list-item-content">
+                            <span class="item-label">Pakaian:</span> 1 set baju untuk hari Sabtu, 1 set baju untuk hiking Minggu pagi, jaket/hoodie, sepatu hiking, sandal, celana dalam & kaos dalam cadangan.
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <i class="fas fa-toilet-paper"></i>
+                        <div class="list-item-content">
+                            <span class="item-label">Kebutuhan Pribadi:</span> Handuk kecil, air minum, peralatan mandi sederhana, power bank/charger, obat-obatan pribadi (jika ada), sunblock.
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <i class="fas fa-book"></i>
+                        <div class="list-item-content">
+                            <span class="item-label">Untuk Kegiatan:</span> BUKU untuk sesi membaca.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="closing-message">
+                <p class="closing-text">Have a fun and memorable gathering, guys!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle animations to table rows when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Animate table rows
+            const rows = document.querySelectorAll('.schedule-table tr');
+            rows.forEach((row, index) => {
+                row.style.opacity = 0;
+                row.style.transform = 'translateY(20px)';
+                row.style.transition = `opacity 0.5s ease, transform 0.5s ease ${index * 0.05}s`;
+                observer.observe(row);
+            });
+            
+            // Animate list items
+            const listItems = document.querySelectorAll('.list-item');
+            listItems.forEach((item, index) => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = `opacity 0.5s ease, transform 0.5s ease ${index * 0.1}s`;
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
