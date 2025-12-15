@@ -1,653 +1,417 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rundown Acara Resmi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>My Daily Routine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --light-color: #f3f4f6;
-            --dark-color: #1f2937;
-            --text-color: #374151;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            color: var(--text-color);
+            background-color: #f5f9ff;
+            color: #333;
             line-height: 1.6;
-            min-height: 100vh;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background-color: #ffffff;
+            background-color: white;
             border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            animation: fadeIn 0.8s ease-out;
-            position: relative;
+            margin-bottom: 30px;
         }
         
-        .header {
-            display: flex;
-            align-items: flex-start;
-            padding: 2rem;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
+            padding: 30px;
+            text-align: center;
             position: relative;
-            overflow: hidden;
         }
         
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Ccircle cx='20' cy='20' r='5' fill='rgba(255,255,255,0.1)' /%3E%3Ccircle cx='80' cy='80' r='8' fill='rgba(255,255,255,0.1)' /%3E%3Ccircle cx='40' cy='70' r='6' fill='rgba(255,255,255,0.1)' /%3E%3C/svg%3E");
-            opacity: 0.5;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
         
-        .logo-container {
-            width: 80px;
-            height: 80px;
-            margin-right: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 16px;
-            padding: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-container:hover {
-            transform: rotate(10deg) scale(1.05);
-        }
-        
-        .logo-svg {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .agency-info {
-            flex-grow: 1;
-            z-index: 1;
-        }
-        
-        .agency-info .title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .agency-info .address, .agency-info .phone {
-            font-size: 0.9rem;
+        .subtitle {
+            font-size: 1.1rem;
             opacity: 0.9;
-            margin-bottom: 0.25rem;
+            margin-bottom: 20px;
         }
         
-        .website {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 0.5rem;
-            padding: 0.35rem 0.75rem;
-            background: rgba(255, 255, 255, 0.2);
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
             border-radius: 50px;
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
         }
         
-        .website:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .btn-primary {
+            background-color: white;
+            color: #2575fc;
+        }
+        
+        .btn-primary:hover {
+            background-color: #f0f7ff;
             transform: translateY(-2px);
         }
         
-        .website i {
-            margin-right: 0.5rem;
-        }
-        
-        .document-title-box {
-            background: linear-gradient(to right, #fbbf24, #f59e0b);
-            padding: 1.5rem;
-            text-align: center;
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
             color: white;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.4);
         }
         
-        .document-title-box::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Cpath d='M0 0 L100 100' stroke='rgba(255,255,255,0.1)' stroke-width='1' /%3E%3Cpath d='M100 0 L0 100' stroke='rgba(255,255,255,0.1)' stroke-width='1' /%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-        
-        .document-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .document-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
         .content {
-            padding: 2rem;
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef5ff;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
         }
         
         .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+        
+        .routine-item {
             display: flex;
-            align-items: center;
-        }
-        
-        .section-title i {
-            margin-right: 0.75rem;
-            color: var(--primary-color);
-        }
-        
-        .schedule-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-bottom: 2.5rem;
-            background: white;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9fbff;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #2575fc;
+            transition: all 0.3s ease;
         }
         
-        .schedule-table th {
-            background-color: var(--light-color);
-            font-weight: 600;
-            color: var(--dark-color);
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 2px solid #e5e7eb;
+        .routine-item:hover {
+            background-color: #f0f7ff;
+            transform: translateX(5px);
         }
         
-        .schedule-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-            vertical-align: top;
-            transition: background-color 0.2s ease;
-        }
-        
-        .schedule-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .schedule-table tr:hover td {
-            background-color: #f8fafc;
-        }
-        
-        .time-cell {
-            font-weight: 500;
-            color: var(--primary-color);
-            width: 20%;
-        }
-        
-        .activity-cell {
-            width: 35%;
-            font-weight: 500;
-        }
-        
-        .description-cell {
-            width: 45%;
-        }
-        
-        .list-container {
-            background: var(--light-color);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
-        }
-        
-        .list-title {
+        .time {
+            font-weight: 700;
+            color: #2575fc;
+            min-width: 120px;
             font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
+        }
+        
+        .activity {
+            flex: 1;
+            color: #444;
+            font-size: 1.05rem;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-top: 8px;
+            border-left: 3px solid #ffc107;
+            font-size: 0.95rem;
+        }
+        
+        .holiday-section {
+            background-color: #e8f5e9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border: 2px dashed #4caf50;
+        }
+        
+        .holiday-header {
             display: flex;
             align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #2e7d32;
         }
         
-        .list-title i {
-            margin-right: 0.75rem;
-            color: var(--primary-color);
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 5px;
         }
         
-        .list {
-            list-style-type: none;
-        }
-        
-        .list-item {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .list-item:last-child {
-            border-bottom: none;
-        }
-        
-        .list-item i {
-            color: var(--primary-color);
-            margin-right: 0.75rem;
-            margin-top: 0.25rem;
-            flex-shrink: 0;
-        }
-        
-        .list-item-content {
-            flex: 1;
-        }
-        
-        .item-label {
+        .question {
+            color: #e74c3c;
             font-weight: 600;
-            color: var(--dark-color);
+            margin-top: 10px;
+            font-style: italic;
         }
         
-        .closing-message {
+        footer {
             text-align: center;
-            padding: 2rem;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 12px;
-            margin-top: 2rem;
-            position: relative;
-            overflow: hidden;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
         }
         
-        .closing-message::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Ccircle cx='70' cy='30' r='8' fill='rgba(255,255,255,0.1)' /%3E%3Ccircle cx='30' cy='70' r='10' fill='rgba(255,255,255,0.1)' /%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-        
-        .closing-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-        
-        .animate-pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Responsive Styles */
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 1.5rem;
-            }
-            
-            .logo-container {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-            
-            .agency-info .title {
-                font-size: 1.5rem;
-            }
-            
-            .document-title {
-                font-size: 1.25rem;
-            }
-            
-            .schedule-table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            .time-cell, .activity-cell, .description-cell {
-                width: auto;
-                min-width: 120px;
-            }
-            
-            .content {
-                padding: 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
             body {
                 padding: 10px;
             }
             
-            .container {
-                margin: 1rem auto;
-                border-radius: 12px;
-            }
-            
-            .header {
-                padding: 1rem;
-            }
-            
-            .logo-container {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .document-title-box {
-                padding: 1rem;
-            }
-            
-            .document-title {
-                font-size: 1.1rem;
-            }
-            
             .content {
-                padding: 1rem;
+                padding: 20px;
             }
             
-            .schedule-table th, 
-            .schedule-table td {
-                padding: 0.75rem 0.5rem;
-                font-size: 0.9rem;
+            h1 {
+                font-size: 2rem;
             }
             
-            .list-container {
-                padding: 1rem;
+            .routine-item {
+                flex-direction: column;
             }
             
-            .closing-message {
-                padding: 1.5rem;
+            .time {
+                margin-bottom: 8px;
             }
             
-            .closing-text {
-                font-size: 1rem;
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
             }
         }
         
-        /* Print Styles */
+        /* Print styles */
         @media print {
+            .controls {
+                display: none;
+            }
+            
             body {
-                background: white;
+                background-color: white;
                 padding: 0;
             }
             
             .container {
                 box-shadow: none;
-                margin: 0;
-                max-width: 100%;
+                border-radius: 0;
             }
             
-            .website:hover {
-                background: rgba(255, 255, 255, 0.2);
-                transform: none;
-            }
-            
-            .logo-container:hover {
+            .routine-item:hover {
                 transform: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo-container">
-                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="100" rx="20" ry="20" fill="#2563eb"/>
-                    <path d="M 25 25 L 75 25 L 75 75 L 50 50 L 25 75 Z" fill="#ffffff" stroke="#ffffff" stroke-width="3"/>
-                </svg>
+    <div class="container" id="routine-content">
+        <header>
+            <h1>📅 Daily Routine</h1>
+            <p class="subtitle">A structured daily schedule for productivity and balance</p>
+            
+            <div class="controls">
+                <button class="btn btn-primary" id="download-pdf">
+                    <i class="fas fa-download"></i> Download as PDF
+                </button>
+                <button class="btn btn-secondary" id="print-page">
+                    <i class="fas fa-print"></i> Print Routine
+                </button>
             </div>
-            <div class="agency-info">
-                <div class="title">AGENCY TEAM</div>
-                <div class="address">
-                    Jalan Kenaji, Tamanmartani, Kalasan, Sleman, Yogyakarta 55571
-                </div>
-                <div class="phone">
-                    Telepon: (0858) 76902820
-                </div>
-                <a href="https://fazmen.my.id" class="website">
-                    <i class="fas fa-globe"></i>
-                    <span class="font-bold">FAZMEN</span> | fazmen.my.id
-                </a>
-            </div>
-        </div>
-
-        <div class="document-title-box animate-pulse">
-            <h1 class="document-title">RUNDOWN KEGIATAN BERMALAM BERSAMA</h1>
-            <p class="document-subtitle">
-                Lokasi: Rumah Ibrahim · Waktu: Sabtu, 15.00 - Minggu, ~17.00
-            </p>
-        </div>
-
+        </header>
+        
         <div class="content">
-            <h2 class="section-title">
-                <i class="fas fa-calendar-day"></i>
-                HARI SABTU
-            </h2>
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th class="time-cell">Waktu</th>
-                        <th class="activity-cell">Aktivitas</th>
-                        <th class="description-cell">Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="time-cell">15.00 - 16.00</td>
-                        <td class="activity-cell">Kedatangan & Check-in</td>
-                        <td class="description-cell">Tiba di rumah Ibrahim, menempatkan barang, dan bersantai.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">16.00 - 18.00</td>
-                        <td class="activity-cell">Waktu Luang</td>
-                        <td class="description-cell">Bersantai dan menikmati waktu luang bersama.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">18.00 - 19.30</td>
-                        <td class="activity-cell">Makan Malam Mie Ayam</td>
-                        <td class="description-cell">Makan malam mie ayam bersama.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">19.30 - 21.50 & NOBAR</td>
-                        <td class="activity-cell">Outdoor Adventure</td>
-                        <td class="description-cell">Pergi ke tempat yang telah ditentukan (misal: alun-alun, car free night, atau spot nonton kota).</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">21.50 - 22.00</td>
-                        <td class="activity-cell">Bersih-Bersih</td>
-                        <td class="description-cell">Cuci muka, siap-siap untuk tidur.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">22.00 - 22.30</td>
-                        <td class="activity-cell">Membaca Buku</td>
-                        <td class="description-cell">Waktu tenang untuk membaca buku masing-masing.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">22.30 - 23.00</td>
-                        <td class="activity-cell">Refleksi & Bercerita</td>
-                        <td class="description-cell">Ngobrol ringan sambil merefleksikan hari ini.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">23.00</td>
-                        <td class="activity-cell">TIDUR</td>
-                        <td class="description-cell">Waktu istirahat.</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2 class="section-title">
-                <i class="fas fa-calendar-day"></i>
-                HARI MINGGU
-            </h2>
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th class="time-cell">Waktu</th>
-                        <th class="activity-cell">Aktivitas</th>
-                        <th class="description-cell">Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="time-cell">06.00 - 06.30</td>
-                        <td class="activity-cell">Bangun & Persiapan Hiking</td>
-                        <td class="description-cell">Ganti pakaian dan packing air minum.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">06.30 - 07.00</td>
-                        <td class="activity-cell">Sarapan Pagi Ringan</td>
-                        <td class="description-cell">Sarapan sederhana (roti, sereal, atau buah).</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">07.00</td>
-                        <td class="activity-cell">BERANGKAT HIKING</td>
-                        <td class="description-cell">Menuju lokasi hiking Kalitalang.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">07.30 - 12.00</td>
-                        <td class="activity-cell">Hiking di Kalitalang</td>
-                        <td class="description-cell">Menikmati pemandangan dan foto-foto. Jaga hidrasi!</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">12.00 - 14.00</td>
-                        <td class="activity-cell">Makan bersama</td>
-                        <td class="description-cell">Bisa cari makan atau makan makanan yang sudah dibawa..</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">14.00 - 15.00</td>
-                        <td class="activity-cell">Karaoke & Bersih-Bersih</td>
-                        <td class="description-cell">Bernyanyi sambil membereskan barang dan tempat.</td>
-                    </tr>
-                    <tr>
-                        <td class="time-cell">~15.00</td>
-                        <td class="activity-cell">SELESAI & PULANG</td>
-                        <td class="description-cell">Kegiatan resmi berakhir.</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="list-container">
-                <h3 class="list-title">
-                    <i class="fas fa-suitcase"></i>
-                    LIST BARANG WAJIB DIBAWA
-                </h3>
-                <ul class="list">
-                    <li class="list-item">
-                        <i class="fas fa-tshirt"></i>
-                        <div class="list-item-content">
-                            <span class="item-label">Pakaian:</span> 1 set baju untuk hari Sabtu, 1 set baju untuk hiking Minggu pagi, jaket/hoodie, sepatu/sandal hiking, celana dalam & kaos dalam cadangan.
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🕔</div>
+                    <h2 class="section-title">Pagi</h2>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">05:00</div>
+                    <div class="activity">wake up + drink + pray</div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">05:10</div>
+                    <div class="activity">select what's your purpose today and write 1-3 important goal that you need to achive today</div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">05:20</div>
+                    <div class="activity">
+                        Read book (min 5 minutes)
+                        <div class="note">
+                            - Try to practice your english with ai<br>
+                            - or english video (no entertainment)
                         </div>
-                    </li>
-                    <li class="list-item">
-                        <i class="fas fa-toilet-paper"></i>
-                        <div class="list-item-content">
-                            <span class="item-label">Kebutuhan Pribadi:</span> Makanan ( roti cemilan dll), air minum, power bank/charger, obat-obatan pribadi (jika ada).
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <i class="fas fa-book"></i>
-                        <div class="list-item-content">
-                            <span class="item-label">Untuk Kegiatan:</span> BUKU untuk sesi membaca.
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
-
-            <div class="closing-message">
-                <p class="closing-text">Have a fun and memorable gathering, guys!</p>
+            
+            <div class="holiday-section">
+                <div class="holiday-header">
+                    <div class="section-icon">📌</div>
+                    <h2 class="section-title">Jika Hari Libur</h2>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">07.00-/+-08.00</div>
+                    <div class="activity">jogging/explore/🚲 (exercise)<br>
+                        <div class="note">-chose to do the hard work</div>
+                    </div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">+-08:00–9:00</div>
+                    <div class="activity">Deep Work</div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">9:00–12:00</div>
+                    <div class="activity">konten kreator</div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">12:00–14:00</div>
+                    <div class="activity">Istirahat+watch youtube videos (english)</div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">14.00-16.00</div>
+                    <div class="activity">kerja santai<br>
+                        <div class="note">(Reset pasar, website, dll)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🏃‍♂️</div>
+                    <h2 class="section-title">Sore</h2>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">16:00</div>
+                    <div class="activity">
+                        Lari 4 km/<br>
+                        <div class="note">-istirahat bila udah</div>
+                        <div class="question">Sore either you choose to chill or to do the hard work ?☠️</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🌙</div>
+                    <h2 class="section-title">Malam</h2>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">19:00</div>
+                    <div class="activity">Baca buku (minimal 5 menit)<br>
+                        <div class="note">Free</div>
+                    </div>
+                </div>
+                
+                <div class="routine-item">
+                    <div class="time">19:30–22:00</div>
+                    <div class="activity">Work Session (include content creation etc)</div>
+                </div>
             </div>
         </div>
+        
+        <footer>
+            <p>Daily Routine Schedule • Created with HTML, CSS & JavaScript</p>
+        </footer>
     </div>
 
     <script>
-        // Add subtle animations to table rows when they come into view
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
+        document.getElementById('download-pdf').addEventListener('click', function() {
+            const element = document.getElementById('routine-content');
+            const opt = {
+                margin:       0.5,
+                filename:     'My_Daily_Routine.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
             
-            // Animate table rows
-            const rows = document.querySelectorAll('.schedule-table tr');
-            rows.forEach((row, index) => {
-                row.style.opacity = 0;
-                row.style.transform = 'translateY(20px)';
-                row.style.transition = `opacity 0.5s ease, transform 0.5s ease ${index * 0.05}s`;
-                observer.observe(row);
+            // Show a loading indicator
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            this.disabled = true;
+            
+            // Generate PDF
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore button
+                this.innerHTML = originalText;
+                this.disabled = false;
             });
-            
-            // Animate list items
-            const listItems = document.querySelectorAll('.list-item');
-            listItems.forEach((item, index) => {
-                item.style.opacity = 0;
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = `opacity 0.5s ease, transform 0.5s ease ${index * 0.1}s`;
-                observer.observe(item);
+        });
+        
+        document.getElementById('print-page').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // Add some interactivity to routine items
+        document.querySelectorAll('.routine-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.backgroundColor = '#e8f4ff';
+                setTimeout(() => {
+                    this.style.backgroundColor = '';
+                }, 300);
             });
         });
     </script>
